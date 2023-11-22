@@ -11,7 +11,7 @@ def is_sequence(obj):
     across Python 2.x and 3.x
     """
     try:
-        from collections import Sequence
+        from collections.abc import Sequence
     except ImportError:
         from operator import isSequenceType
         return isSequenceType(obj)
