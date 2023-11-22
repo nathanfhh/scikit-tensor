@@ -96,7 +96,7 @@ def hooi(X, rank, **kwargs):
     fit = 0
     exectimes = []
     for itr in range(maxIter):
-        tic = time.clock()
+        tic = time.perf_counter()
         fitold = fit
 
         for n in range(ndims):
@@ -112,7 +112,7 @@ def hooi(X, rank, **kwargs):
         # fraction explained by model
         fit = 1 - (normresidual / normX)
         fitchange = abs(fitold - fit)
-        exectimes.append(time.clock() - tic)
+        exectimes.append(time.perf_counter() - tic)
 
         _log.debug(
             '[%3d] fit: %.5f | delta: %7.1e | secs: %.5f'

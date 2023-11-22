@@ -34,7 +34,7 @@ _DEF_MAXITER = 500
 _DEF_INIT = 'nvecs'
 _DEF_CONV = 1e-5
 _DEF_FIT_METHOD = 'full'
-_DEF_TYPE = np.float
+_DEF_TYPE = float
 
 __all__ = [
     'als',
@@ -136,7 +136,7 @@ def als(X, rank, **kwargs):
     fit = 0
     exectimes = []
     for itr in range(maxiter):
-        tic = time.clock()
+        tic = time.perf_counter()
         fitold = fit
 
         for n in range(N):
@@ -160,7 +160,7 @@ def als(X, rank, **kwargs):
         else:
             fit = itr
         fitchange = abs(fitold - fit)
-        exectimes.append(time.clock() - tic)
+        exectimes.append(time.perf_counter() - tic)
         _log.debug(
             '[%3d] fit: %.5f | delta: %7.1e | secs: %.5f' %
             (itr, fit, fitchange, exectimes[-1])

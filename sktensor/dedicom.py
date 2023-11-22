@@ -100,7 +100,7 @@ def asalsan(X, rank, **kwargs):
     fit = fitold = f = fitchange = 0
     exectimes = []
     for iters in xrange(maxIter):
-        tic = time.clock()
+        tic = time.perf_counter()
         fitold = fit
         A = __updateA(X, A, D, R, nne)
         if proj:
@@ -122,7 +122,7 @@ def asalsan(X, rank, **kwargs):
         fit = 1 - (f / normXSum)
         fitchange = abs(fitold - fit)
 
-        exectimes.append(time.clock() - tic)
+        exectimes.append(time.perf_counter() - tic)
 
         # print iter info when debugging is enabled
         _log.debug('[%3d] fit: %.5f | delta: %7.1e | secs: %.5f' % (
